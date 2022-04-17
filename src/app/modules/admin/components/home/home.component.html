@@ -1,48 +1,39 @@
-<div class="container pt-5 pb-5">
-    <div class="col-12">
-        <div class="d-flex flex-wrap justify-content-between">
-            <div class="card shadow mt-2">
-                <div class="card-body">
-                    <h5 class="card-title">Admin Component</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-            <div class="card shadow mt-2">
-                <div class="card-body">
-                    <h5 class="card-title">Admin Component</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-            <div class="card shadow mt-2">
-                <div class="card-body">
-                    <h5 class="card-title">Admin Component</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-            <div class="card shadow mt-2">
-                <div class="card-body">
-                    <h5 class="card-title">Admin Component</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-            <div class="card shadow mt-2">
-                <div class="card-body">
-                    <h5 class="card-title">Admin Component</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-            <div class="card shadow mt-2">
-                <div class="card-body">
-                    <h5 class="card-title">Admin Component</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-    </div>
+<table class="table table-dark table-hover">
+  <thead>
+    <tr>
+      <td>Sr No</td>
+      <td>First Name</td>
+      <td>Last Name</td>
+      <td>Email</td>
+      <td>Avatar</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="
+        let users of data
+          | paginate
+            : {
+                id: 'pagination',
+                itemsPerPage: 3,
+                currentPage: page,
+                totalItems: totalRecords
+              }
+      "
+    >
+      <td>{{ users.id }}</td>
+      <td>{{ users.first_name }}</td>
+      <td>{{ users.last_name }}</td>
+      <td>{{ users.email }}</td>
+      <td><img src="{{ users.avatar }}" class="img-thumbnail" alt="" /></td>
+    </tr>
+  </tbody>
+</table>
+<div class="d-flex justify-content-center">
+  <pagination-controls
+    id="pagination"
+    maxSize:number="5"
+    directionLinks:boolean="true"
+    (pageChange)="page = $event"
+  ></pagination-controls>
 </div>
